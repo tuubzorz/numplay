@@ -1,0 +1,5 @@
+Start with:
+npm start
+
+Add images to public/images
+and sounds to folders in public/sounds

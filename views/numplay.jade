@@ -1,0 +1,26 @@
+doctype html
+html
+	head
+		script(src="/socket.io/socket.io.js")
+		link(rel='stylesheet' href='stylesheets/style.css')
+	body(onkeypress='keydown(event)')
+		.content
+			| Party level: 
+			span#level 1
+			span.right
+				| XP: 
+				span#xp 0
+			#progressbar
+				#progress.progress
+			br
+			#nintendo.nintendo1
+		div(style='display: none')
+			- var index = 0
+			each val in keys
+				each file in files[val]
+					//li= val + ": " + file
+					audio(name='audio'+index)
+						source(src=file, type='audio/ogg')
+				- index++
+		script(src='javascripts/main.js')
+

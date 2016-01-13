@@ -1,0 +1,65 @@
+body {
+	background: black;
+}
+
+.content {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	color: white;
+	font-weight: bold;
+	font-size: 36px;
+}
+.right { float: right }
+
+#progressbar {
+	height: 100px;
+	overflow: hidden;
+	position: relative;
+
+	background: -webkit-linear-gradient(top, #f0b7a1 0%,#8c3310 26%,#752201 77%,#bf6e4e 100%);;
+	
+	-webkit-border-radius: 15px;
+	border: 2px solid gray;
+}
+.progress {
+	display: inline-block;
+	height: 100px;
+
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d0e4f7), color-stop(14%,#73b1e7), color-stop(58%,#0a77d5), color-stop(100%,#539fe1));
+
+	-webkit-border-radius: 10px;
+	/*border: 2px solid gray;*/
+}
+#effect {
+	background: green;
+	width: 30px;
+	position: absolute;
+}
+
+#nintendo {
+	min-width: 1010px;
+	min-height: 834px;
+	background-color: white;
+	border: 3px solid grey;
+	background-repeat: no-repeat;
+	background-position: 50%;
+}
+
+.nintendo1 { background-image: url('/images/1nes.png') }
+.nintendo2{ background-image: url('/images/2gameboy.png') }
+.nintendo3{ background-image: url('/images/3snes.png') }
+.nintendo4{ background-image: url('/images/4virtualboy.png') }
+.nintendo5{ background-image: url('/images/5gameboypocket.png') }
+.nintendo6{ background-image: url('/images/6n64.png') }
+.nintendo7{ background-image: url('/images/7gameboycolor.png') }
+.nintendo8{ background-image: url('/images/8gamecube.png') }
+.nintendo9{ background-image: url('/images/9gameboyadvanced.png') }
+.nintendo10{ background-image: url('/images/10ds.png') }
+.nintendo11{ background-image: url('/images/11wii.png') }
+.nintendo12{ background-image: url('/images/123ds.png') }
+.nintendo13{ background-image: url('/images/13wiiu.png') }
+.nintendo15{ background-image: url('/images/15bRFcgW5.jpg') }
+.nintendo16{ background-image: url('/images/16ces2015_EMTEC-Steam-Box_03.jpg') }
+#nintendo.nintendo17{ display: none }
