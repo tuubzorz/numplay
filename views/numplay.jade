@@ -5,15 +5,27 @@ html
 		link(rel='stylesheet' href='stylesheets/style.css')
 	body(onkeypress='keydown(event)')
 		.content
-			| Party level: 
-			span#level 1
-			span.right
-				| XP: 
-				span#xp 0
-			#progressbar
-				#progress.progress
-			br
-			#nintendo.nintendo1
+			#good.leveltracker
+				| Alliance party level: 
+				span#good_level 1
+				span.right
+					| XP: 
+					span#good_xp 0
+				.progressbar
+					#good_progress.progress
+				br
+
+			#evil.leveltracker
+				| Horde party level: 
+				span#evil_level 1
+				span.right
+					| XP: 
+					span.evil_xp 0
+				.progressbar
+					#evil_progress.progress
+				br
+
+
 		div(style='display: none')
 			- var index = 0
 			each val in keys

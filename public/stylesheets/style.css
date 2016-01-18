@@ -1,20 +1,33 @@
 body {
-	background: black;
+	height: 100vh;
+	background: url("/images/bg.jpg");
+	background-size: 100% 100%;
+	margin: 0;
 }
 
 .content {
-	width: 70%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 50px;
 	color: white;
+	width: 100%;
 	font-weight: bold;
-	font-size: 36px;
+	font-size: 28px;
+	position: absolute;
+	bottom: 10%;
 }
 .right { float: right }
 
-#progressbar {
-	height: 100px;
+.leveltracker {
+	width: 40%;
+	padding-left: 5%;
+	padding-right: 5%;
+	display: inline;
+}
+
+#good {float: left;}
+
+#evil {float: right;}
+
+.progressbar {
+	height: 30px;
 	overflow: hidden;
 	position: relative;
 
@@ -25,7 +38,7 @@ body {
 }
 .progress {
 	display: inline-block;
-	height: 100px;
+	height: 30px;
 
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d0e4f7), color-stop(14%,#73b1e7), color-stop(58%,#0a77d5), color-stop(100%,#539fe1));
 

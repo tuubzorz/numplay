@@ -1,5 +1,31 @@
-document.getElementById("progress").style.width = "0%";
-var level = 1, progress = 0;
+function Team (teamname) {
+	this.levelElementId = teamname+'_level'
+	this.progressElementId = teamname+'_progress';
+	this.xpElementId = teamname+'_xp'
+	this.level = 1;
+	this.progress = 0;
+	document.getElementById(this.progressElementId).style.width = "0%";
+
+	this.addXP = function(){
+		playAudio(10);
+		this.progress += Math.round((maxXP(this.level) - maxXP(this.level - 1)) * 0.05);
+		if(this.progress >= maxXP(this.level)) {
+			this.incrementLevel();
+		}
+		document.getElementById(this.progressElementId).style.width = (this.progress - maxXP(this.level - 1)) / (maxXP(this.level) - maxXP(this.level - 1)) * 100 + "%";
+		document.getElementById(this.xpElementId).innerHTML = this.progress;
+	}
+
+	this.incrementLevel = function() {
+		this.level++;
+		playAudio(2);
+		//levelup(20);
+		document.getElementById(this.levelElementId).innerHTML = this.level;
+	}
+}
+
+var good = new Team('good');
+var evil = new Team('evil');
 
 io = io.connect();
 
@@ -10,8 +36,12 @@ io.on('play', function(data) {
 
 io.on('xp', function() {
 	console.log("Remote increase XP");
-	XPinc();
+	XPinc(good);
 });
+
+function maxXP(level) {
+	return level*level*500;
+}
 
 function playAudio(category) {
 	var clips = document.getElementsByName("audio" + category);
@@ -19,25 +49,8 @@ function playAudio(category) {
 	clips[clip].play();
 }
 
-function maxXP(level) {
-	return level*level*500;
-}
-
-function addXP(level) {
-	playAudio(10);
-	return Math.round((maxXP(level) - maxXP(level - 1)) * 0.01);
-}
-function XPinc() {
-	progress += addXP(level);
-	if (progress >= maxXP(level)) {
-		level++;
-		playAudio(2);
-		levelup(20);
-		setNintendo(level);
-		document.getElementById("level").innerHTML = level;
-	}
-	document.getElementById("progress").style.width = (progress - maxXP(level - 1)) / (maxXP(level) - maxXP(level - 1)) * 100 + "%";
-	document.getElementById("xp").innerHTML = progress;
+function XPinc(team) {
+	team.addXP();
 }
 
 function keydown(event) {
@@ -45,7 +58,10 @@ function keydown(event) {
 		playAudio(event.keyCode - 48);
 	}
 	if (event.keyCode == 43) {
-		XPinc();
+		good.addXP();
+	}
+	if (event.keyCode == 45) {
+		evil.addXP();
 	}
 	//console.log(event.keyCode);
 }
@@ -62,8 +78,3 @@ function levelup(blink) {
 		document.body.style.background = "black";
 }
 
-function setNintendo(level) {
-	if (level < 18)
-	//if (level < 15)
-		document.getElementById("nintendo").className = "nintendo" + level;
-}
