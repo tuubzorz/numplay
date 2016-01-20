@@ -3,6 +3,7 @@ body {
 	background: url("/images/bg.jpg");
 	background-size: 100% 100%;
 	margin: 0;
+	background-color: black;
 }
 
 .content {
@@ -22,9 +23,9 @@ body {
 	display: inline;
 }
 
-#good {float: left;}
+#alliance {float: left;}
 
-#evil {float: right;}
+#horde {float: right;}
 
 .progressbar {
 	height: 30px;
@@ -45,34 +46,3 @@ body {
 	-webkit-border-radius: 10px;
 	/*border: 2px solid gray;*/
 }
-#effect {
-	background: green;
-	width: 30px;
-	position: absolute;
-}
-
-#nintendo {
-	min-width: 1010px;
-	min-height: 834px;
-	background-color: white;
-	border: 3px solid grey;
-	background-repeat: no-repeat;
-	background-position: 50%;
-}
-
-.nintendo1 { background-image: url('/images/1nes.png') }
-.nintendo2{ background-image: url('/images/2gameboy.png') }
-.nintendo3{ background-image: url('/images/3snes.png') }
-.nintendo4{ background-image: url('/images/4virtualboy.png') }
-.nintendo5{ background-image: url('/images/5gameboypocket.png') }
-.nintendo6{ background-image: url('/images/6n64.png') }
-.nintendo7{ background-image: url('/images/7gameboycolor.png') }
-.nintendo8{ background-image: url('/images/8gamecube.png') }
-.nintendo9{ background-image: url('/images/9gameboyadvanced.png') }
-.nintendo10{ background-image: url('/images/10ds.png') }
-.nintendo11{ background-image: url('/images/11wii.png') }
-.nintendo12{ background-image: url('/images/123ds.png') }
-.nintendo13{ background-image: url('/images/13wiiu.png') }
-.nintendo15{ background-image: url('/images/15bRFcgW5.jpg') }
-.nintendo16{ background-image: url('/images/16ces2015_EMTEC-Steam-Box_03.jpg') }
-#nintendo.nintendo17{ display: none }

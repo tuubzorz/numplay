@@ -1,12 +1,12 @@
 io = io.connect()
 
-function play(sound) {
-	console.log(sound);
-	io.emit('play', sound)
+function play() {
+	console.log('Gong');
+	io.emit('play')
 }
 
-function xp() {
+function xp(team) {
 	console.log("XP+");
-	io.emit('xp')
+	io.emit('xp', team)
 }
 

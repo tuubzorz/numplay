@@ -5,34 +5,27 @@ html
 		link(rel='stylesheet' href='stylesheets/style.css')
 	body(onkeypress='keydown(event)')
 		.content
-			#good.leveltracker
+			#alliance.leveltracker
 				| Alliance party level: 
-				span#good_level 1
+				span#alliance_level 1
 				span.right
 					| XP: 
-					span#good_xp 0
+					span#alliance_xp 0
 				.progressbar
-					#good_progress.progress
+					#alliance_progress.progress
 				br
 
-			#evil.leveltracker
+			#horde.leveltracker
 				| Horde party level: 
-				span#evil_level 1
+				span#horde_level 1
 				span.right
 					| XP: 
-					span#evil_xp 0
+					span#horde_xp 0
 				.progressbar
-					#evil_progress.progress
+					#horde_progress.progress
 				br
 
-
-		div(style='display: none')
-			- var index = 0
-			each val in keys
-				each file in files[val]
-					//li= val + ": " + file
-					audio(name='audio'+index)
-						source(src=file, type='audio/ogg')
-				- index++
+		script(type='text/javascript').
+			var sounds = !{JSON.stringify(soundFiles)};
 		script(src='javascripts/main.js')
 

@@ -1,18 +1,15 @@
 doctype html
 html
-	head
+	head()
 		script(src="/socket.io/socket.io.js")
 		script(src="/javascripts/songleader.js")
+		link(rel='stylesheet' href='stylesheets/songleader.css')
 		meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
 		style.
 			button { padding: 5px }
 	body(onkeypress='keydown(event)')
-		div
-			button(onclick='xp()') Increase XP
-			br
-			br
-			- var index = 0
-			each val in keys
-				button(onclick='play('+index+')')= index + ": " + val + "(" +  + files[val].length + ")"
-				br
-				- index++
+		div.sounds
+			button(onclick="play()") Gong!
+		div.xp
+			button.inline(onclick="xp('alliance')", style="float: left") Alliance Increase XP
+			button.inline(onclick="xp('horde')", style="float: right") Horde Increase XP

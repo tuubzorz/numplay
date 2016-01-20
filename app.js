@@ -11,15 +11,13 @@ var app = express();
 app.http().io();
 
 app.io.route('play', function(req) {
-    // req.io.broadcast('new visitor')
-	console.log("Remote: Play" + req.data);
-	req.io.broadcast('play', req.data);
+	console.log("Remote: Gong");
+	req.io.broadcast('play');
 })
 
 app.io.route('xp', function(req) {
-    // req.io.broadcast('new visitor')
-	console.log("Remote: Increase xp");
-	req.io.broadcast('xp');
+	console.log("Remote: Increase xp for "+ req.data);
+	req.io.broadcast('xp', req.data);
 })
 
 
