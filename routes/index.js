@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var basicAuth = require('basic-auth-connect');
 var walk = require('walk');
 
 walker = walk.walk("public/sounds/gong", {followLinks: false});
@@ -21,12 +21,14 @@ walker.on("end", function() {
 	console.log("Done in: " + Math.round((new Date() - startTime) / 1000) + " seconds");
 });
 
+
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('numplay', { soundFiles: soundFiles });
 });
 
-router.get('/songleader', function(req, res) {
+var auth = basicAuth('songleader', 'testPass')
+router.get('/songleader', auth, function(req, res) {
   res.render('songleader', { soundFiles: soundFiles });
 });
 
