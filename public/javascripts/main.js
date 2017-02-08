@@ -5,7 +5,8 @@ function Team (teamname) {
 	this.xpElementId = teamname+'_xp';
 	this.level = 1;
 	this.progress = 0;
-	this.fanfare = new Audio("sounds/fanfare/"+teamname+".ogg")
+	this.fanfare = new Audio("sounds/fanfare/fanfare.ogg")
+	this.hurts = new Audio("sounds/hurts.ogg")
 	document.getElementById(this.progressElementId).style.width = "0%";
 
 	this.addXP = function(){
@@ -24,21 +25,33 @@ function Team (teamname) {
 		document.getElementById(this.levelElementId).innerHTML = this.level;
 		this.fanfare.play();
 	}
+
+	this.damage = function() {
+		var damage = Math.round((maxXP(this.level) - maxXP(this.level - 1)) * 0.05);
+		floorXP = maxXP(this.level - 1);
+		if(this.progress - damage < floorXP) {
+			this.progress = floorXP;
+		} else {
+			this.progress -= damage;
+			document.getElementById(this.progressElementId).style.width = (this.progress - maxXP(this.level - 1)) / (maxXP(this.level) - maxXP(this.level - 1)) * 100 + "%";
+			document.getElementById(this.xpElementId).innerHTML = this.progress;
+		}
+		this.hurts.play();
+	}
 }
 
 function Thirst () {
-	this.thirst = 50;
+	this.thirst = 40;
 	this.barElementId = 'thirst_bar';
 	this.thirstElementId = 'thirstlevel';
-	this.hurts = new Audio("sounds/todo.ogg")
 	this.gulp = new Audio('sounds/gulp.ogg'); // TODO
 	document.getElementById(this.barElementId).style.width = this.thirst+"%";
 
 	this.drink = function() {
-		if((this.thirst + 5) > 100) {
+		if((this.thirst + 20) > 100) {
 			this.thirst = 100;
 		} else {
-			this.thirst += 5;
+			this.thirst += 20;
 		}
 
 		document.getElementById(this.barElementId).style.width = this.thirst+"%";
@@ -49,7 +62,7 @@ function Thirst () {
 	this.decrease = function() {
 		if((this.thirst - 5) < 0) {
 			this.thirst = 0;
-			this.hurts.play();
+			party.damage();
 		} else {
 			this.thirst -= 5;
 		}
@@ -120,11 +133,11 @@ function keydown(event) {
 function levelupbackground(teamname) {
 	// number and names of image files is hard coded here so we
 	// don't support arbitrarily changing/adding new image files
-	var image = teamname + '/' + (Math.floor(Math.random()*6));
-	document.body.style.backgroundImage = "url('/images/"+image+".jpg')";
+	var image = (Math.floor(Math.random()*6));
+	document.body.style.backgroundImage = "url('/images/"+image+".gif')";
 	setTimeout(function() {document.body.style.backgroundImage = "url('/images/bg.jpg')"}, 10000);
 }
 
 var thirstinterval = setInterval(function(){
 	thirst.decrease();
-}, 1000);
+}, 1500);
