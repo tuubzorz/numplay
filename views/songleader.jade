@@ -8,8 +8,6 @@ html
 		style.
 			button { padding: 5px }
 	body(onkeypress='keydown(event)')
-		div.sounds
-			button(onclick="play()") Gong!
-		div.xp
-			button.inline(onclick="xp('alliance')", style="float: left") Alliance Increase XP
-			button.inline(onclick="xp('horde')", style="float: right") Horde Increase XP
+		.buttons
+			button.inline(onclick="xp('party')") Party Increase XP
+			button(onclick="drink()") Drink!

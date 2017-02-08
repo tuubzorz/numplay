@@ -26,10 +26,43 @@ function Team (teamname) {
 	}
 }
 
-var alliance = new Team('alliance');
-var horde = new Team('horde');
+function Thirst () {
+	this.thirst = 50;
+	this.barElementId = 'thirst_bar';
+	this.thirstElementId = 'thirstlevel';
+	this.hurts = new Audio("sounds/todo.ogg")
+	this.gulp = new Audio('sounds/gulp.ogg'); // TODO
+	document.getElementById(this.barElementId).style.width = this.thirst+"%";
 
-var xpding = new Audio('sounds/xpding.ogg')
+	this.drink = function() {
+		if((this.thirst + 5) > 100) {
+			this.thirst = 100;
+		} else {
+			this.thirst += 5;
+		}
+
+		document.getElementById(this.barElementId).style.width = this.thirst+"%";
+		document.getElementById(this.thirstElementId).innerHTML = this.thirst;
+		this.gulp.play();
+	}
+
+	this.decrease = function() {
+		if((this.thirst - 5) < 0) {
+			this.thirst = 0;
+			this.hurts.play();
+		} else {
+			this.thirst -= 5;
+		}
+
+		document.getElementById(this.barElementId).style.width = this.thirst+"%";
+		document.getElementById(this.thirstElementId).innerHTML = this.thirst;
+	}
+}
+
+var party = new Team('party');
+var thirst = new Thirst();
+
+var xpding = new Audio('sounds/xpding.ogg');
 var gong = [];
 // "sounds" is provided by the backend to the template, and the template provides it to us
 sounds.forEach(function(thisArg) {
@@ -43,6 +76,11 @@ io.on('play', function(data) {
 	playGong();
 });
 
+io.on('drink', function(data) {
+	console.log("Remote drink: " + data);
+	thirst.drink();
+});
+
 io.on('xp', function(data) {
 	console.log("Remote increase XP for "+ data);
 	switch (data) {
@@ -51,6 +89,9 @@ io.on('xp', function(data) {
 			break;
 		case 'horde':
 			horde.addXP();
+			break;
+		case 'party':
+			party.addXP();
 			break;
 	}
 });
@@ -84,3 +125,6 @@ function levelupbackground(teamname) {
 	setTimeout(function() {document.body.style.backgroundImage = "url('/images/bg.jpg')"}, 10000);
 }
 
+var thirstinterval = setInterval(function(){
+	thirst.decrease();
+}, 1000);

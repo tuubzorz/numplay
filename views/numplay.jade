@@ -5,25 +5,26 @@ html
 		link(rel='stylesheet' href='stylesheets/style.css')
 	body(onkeypress='keydown(event)')
 		.content
-			#alliance.leveltracker
-				| Alliance party level: 
-				span#alliance_level 1
-				span.right
-					| XP: 
-					span#alliance_xp 0
-				.progressbar
-					#alliance_progress.progress
-				br
+			.trackers
+				#level.leveltracker
+					| Party level: 
+					span#party_level 1
+					span.right
+						| XP: 
+						span#party_xp 0
+					.progressbar
+						#party_progress.progress
+					br
 
-			#horde.leveltracker
-				| Horde party level: 
-				span#horde_level 1
-				span.right
-					| XP: 
-					span#horde_xp 0
-				.progressbar
-					#horde_progress.progress
-				br
+				#thirst.leveltracker
+					| Thirst:
+					span.right
+						| 
+						span#thirstlevel 0
+						span %
+					.progressbar
+						#thirst_bar.progress
+					br
 
 		script(type='text/javascript').
 			var sounds = !{JSON.stringify(soundFiles)};

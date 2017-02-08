@@ -13,13 +13,17 @@ app.http().io();
 app.io.route('play', function(req) {
 	console.log("Remote: Gong");
 	req.io.broadcast('play');
-})
+});
 
 app.io.route('xp', function(req) {
 	console.log("Remote: Increase xp for "+ req.data);
 	req.io.broadcast('xp', req.data);
-})
+});
 
+app.io.route('drink', function(req) {
+    console.log("Remote: Drink!")
+    req.io.broadcast('drink', req.data);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

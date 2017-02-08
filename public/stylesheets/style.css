@@ -8,12 +8,18 @@ body {
 
 .content {
 	color: white;
-	width: 100%;
+	width: 80%;
+	margin: 0 auto;
 	font-weight: bold;
 	font-size: 28px;
-	position: absolute;
-	bottom: 10%;
 }
+
+.trackers {
+	width: 80%;
+	position: absolute;
+	bottom: 5%;
+}
+
 .right { float: right }
 
 .leveltracker {
@@ -22,10 +28,6 @@ body {
 	padding-right: 5%;
 	display: inline;
 }
-
-#alliance {float: left;}
-
-#horde {float: right;}
 
 .progressbar {
 	height: 30px;
