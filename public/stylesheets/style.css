@@ -8,14 +8,14 @@ body {
 
 .content {
 	color: white;
-	width: 80%;
+	width: 50%;
 	margin: 0 auto;
 	font-weight: bold;
 	font-size: 28px;
 }
 
 .trackers {
-	width: 80%;
+	width: 50%;
 	position: absolute;
 	bottom: 5%;
 }
